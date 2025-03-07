@@ -10,7 +10,6 @@ import { IoIosLogOut } from "react-icons/io";
 
 const Header = () => {
   const { theme, setTheme , resolvedTheme } = useTheme();
-  const themeRef = useRef(null);
   const {signOut} = useClerk();
     function handleLogOut(){
 
@@ -18,11 +17,11 @@ const Header = () => {
   console.log(theme)
 
   return (
-    <div className='flex justify-between items-center p-4'>
-      <div className="text-4xl font-bold py-[10px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+    <div className='flex justify-between items-center p-1 border-b-1'>
+      <div className="text-4xl font-bold py-[5px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
         Form Forge.
       </div>
-      <div className='flex gap-2.5'>
+      <div className='flex gap-2.5 mr-[30px]'>
         <button 
           className={`p-2 rounded-full cursor-pointer transition-colors ${resolvedTheme =='dark' ?"" : 'bg-gray-100'}`}  
           onClick={() => setTheme("light")}
