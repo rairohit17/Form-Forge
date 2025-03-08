@@ -6,13 +6,20 @@ import { FaEye } from "react-icons/fa";
 import { Skeleton } from "@/components/ui/skeleton";
 import { FaWpforms } from "react-icons/fa";
 import { FaPercentage } from "react-icons/fa";
+import AddForm from "@/components/AddForm";
 
 export default async  function Page() {
   return (
     <div className="pt-4">
-      <Suspense fallback = {<StatsData loading = {true}></StatsData>}>
+      <div className="border-b-2  pb-[40px]">
+      <Suspense  fallback = {<StatsData loading = {true}></StatsData>}>
         <StatsCardWrapper></StatsCardWrapper>
         </Suspense>
+      </div>
+      <div className="mx-[20px] my-[30px]" >
+       <AddForm></AddForm>
+      </div>
+
     </div>
    
     

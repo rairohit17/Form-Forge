@@ -4,8 +4,8 @@ import { currentUser } from "@clerk/nextjs/server";
 
 class UserNotFoundErr extends Error{};
 
- export async function getStatsData(){
-    const user = await currentUser();
+export async function getStatsData(){
+     const user = await currentUser();
     if (!user) throw new UserNotFoundErr()
     
     const stats = await  prisma.form.aggregate({
@@ -25,5 +25,35 @@ class UserNotFoundErr extends Error{};
     
 
 }
+
+ export interface Form {
+name:string
+description:string
+createdAt ? : Date
+published ? : boolean
+content ? : string 
+submissions? : number
+visited? : number
+ shareURL? : string
+}
+
+export async function addFormToUser( formData :Form ){
+    // if (!user) throw new UserNotFoundErr();
+    const user = await currentUser();
+    if (!user) throw new UserNotFoundErr()
+    const finalFormData = {...formData , userId: user.id}
+    try {
+        const addForm = await prisma.form.create({
+            data:finalFormData
+        })
+        
+    } catch (error : any) {
+        console.log("error occured ")
+        console.log(error.message)
+        
+    }
+
+}
+
 
 
