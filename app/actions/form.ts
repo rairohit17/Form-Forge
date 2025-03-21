@@ -55,5 +55,16 @@ export async function addFormToUser( formData :Form ){
 
 }
 
+export async function getUserForms(){
+    const user = await currentUser();
+    if (!user) throw new UserNotFoundErr();
+    const userForms = await prisma.form.findMany({
+        where:{
+            userId : user.id
+        }
+    })
+    return userForms
+}
+
 
 

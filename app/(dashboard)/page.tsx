@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { FaWpforms } from "react-icons/fa";
 import { FaPercentage } from "react-icons/fa";
 import AddForm from "@/components/AddForm";
+import UserForms, { FormCard } from "@/components/UserForms";
 
 export default async  function Page() {
   return (
@@ -16,8 +17,13 @@ export default async  function Page() {
         <StatsCardWrapper></StatsCardWrapper>
         </Suspense>
       </div>
-      <div className="mx-[20px] my-[30px]" >
-       <AddForm></AddForm>
+      <div className="mx-[20px] my-[30px] " >
+       <Suspense fallback = {<div className=" grid  xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+        <AddForm></AddForm>
+        <FormCard loading= {true}></FormCard>
+        <FormCard loading= {true}></FormCard>
+        <FormCard loading= {true}></FormCard>
+       </div>}><UserForms></UserForms></Suspense>
       </div>
 
     </div>
@@ -29,6 +35,7 @@ export default async  function Page() {
 
 async function StatsCardWrapper(){
   const stats = await getStatsData();
+  console.log(getStatsData())
   return <StatsData loading={false} data = {stats}></StatsData>
 }
 
@@ -44,7 +51,7 @@ interface StatsCardProps{
       title={"Total Visits"}
       helperText="total visits accross all forms "
       value={data?.visited as number}
-      className="font-sans text-2xl w-[350px] shadow-lg shadow-blue-600 "
+      className="font-sans text-2xl w-[350px] shadow-md shadow-blue-600 "
       loading = {loading}
       icon = {<FaEye className="text-blue-600"></FaEye>}
        ></StatsCard>
@@ -52,7 +59,7 @@ interface StatsCardProps{
       title={"Total Submissions"}
       helperText="total submissions accross all forms  "
       value={data?.submissions as number}
-      className="font-sans text-2xl w-[350px] shadow-lg shadow-amber-400 "
+      className="font-sans text-2xl w-[350px] shadow-md shadow-amber-400 "
       loading = {loading}
       icon = {<FaWpforms className="text-amber-400"></FaWpforms>}
        ></StatsCard>
@@ -60,7 +67,7 @@ interface StatsCardProps{
       title={"Submission Percentage"}
       helperText="percentage of all forms submitted  "
       value={data?.submissionRate as number}
-      className="font-sans text-2xl w-[350px] shadow-lg shadow-green-500 "
+      className="font-sans text-2xl w-[350px] shadow-md shadow-green-500 "
       loading = {loading}
       icon = {<FaPercentage className="text-green-500"></FaPercentage>}
        ></StatsCard>
@@ -78,6 +85,7 @@ interface StatsCardProps{
   loading : boolean , 
   icon : ReactNode
  }){
+
 
   return (
     <Card className={className}>

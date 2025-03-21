@@ -48,7 +48,7 @@ interface FormProps{
 
     }
   return (
-    <div  className='w-[200px] h-[150px] text-center border-2 border-dotted border-gray-400 hover:bg-gray-100 opacity-50 hover:opacity-80 dark:hover:bg-gray-700  rounded-lg shadow-md flex items-center justify-center cursor-pointer'>
+    <div  className='w-[200px] h-[150px]  lg:mx-[20px] text-center border-2 border-dotted border-gray-400 hover:bg-gray-100 opacity-50 hover:opacity-80 dark:hover:bg-gray-700  rounded-lg shadow-md flex items-center justify-center cursor-pointer'>
         <Dialog  >
         <DialogTrigger className=' m-[30px] ' asChild>
             <IoAdd className='text-[30px] font-light w-full h-full '></IoAdd>
