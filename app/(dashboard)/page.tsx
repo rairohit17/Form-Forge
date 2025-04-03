@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+
 import { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent} from "../../components/ui/card"
 import { getStatsData } from "../actions/form";
 import { ReactNode, Suspense ,  } from "react";
@@ -7,9 +7,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { FaWpforms } from "react-icons/fa";
 import { FaPercentage } from "react-icons/fa";
 import AddForm from "@/components/AddForm";
-import UserForms, { FormCard } from "@/components/UserForms";
-
+import UserForms, { } from "@/components/UserForms";
+import { FormCard } from "@/components/FormCard";
+import { Form , getUserForms } from "../actions/form";
 export default async  function Page() {
+   const forms : Form[] = await getUserForms()
   return (
     <div className="pt-4">
       <div className="border-b-2  pb-[40px]">
@@ -18,12 +20,12 @@ export default async  function Page() {
         </Suspense>
       </div>
       <div className="mx-[20px] my-[30px] " >
-       <Suspense fallback = {<div className=" grid  xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+       <Suspense fallback = {<div className=" grid  2xl:grid-cols-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
         <AddForm></AddForm>
         <FormCard loading= {true}></FormCard>
         <FormCard loading= {true}></FormCard>
         <FormCard loading= {true}></FormCard>
-       </div>}><UserForms></UserForms></Suspense>
+       </div>}><UserForms ></UserForms></Suspense>
       </div>
 
     </div>
